@@ -1,7 +1,7 @@
 # README
 
 
-<https://usf-cs360-spring2020.github.io/homework3-Alegar917/>
+<https://usf-cs360-spring2020.github.io/project-Alegar917/>
 
 ![Profile Image](ale.png)
 
