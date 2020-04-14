@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Data</title>
+
+    <!-- Load Bulma from CDN (consider saving it to repository instead) -->
+    <!-- https://bulma.io/ -->
+    <link rel="stylesheet" href="https://jenil.github.io/bulmaswatch/nuclear/bulmaswatch.min.css">
+
+    <!-- Load Font Awesome 5 (free) icons -->
+
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script>
+    $(function(){
+      $("#footer").load("footer.html");
+      $("#navigation").load("navbar.html");
+    });
+    </script>
+  </head>
+
+  <body>
+
+  <div id="navigation"></div>
+
+  <section class="section">
+    <div class="container">
+      <!-- Begin page content -->
+      <div class="content">
+
+        <h2 id="data">Data Source</h2>
+
+        <!-- <p>Include some detailed information about the dataset here. You should <a href="#">add a link</a> to the original dataset. You might also want to quote the license:</p> -->
+
+        <h2 id="data">Data</h2>
+
+                <p>The data set was taken from Data SF and shows the <a href="https://data.sfgov.org/Housing-and-Buildings/Eviction-Notices/5cei-gny5"> Eviction Notices </a> filed with the San Francisco Rent Board per San Francisco Administrative Code 37.9(c).
+                <p> Notices are published since January 1, 1997 and monthly updated (as of this date in April 2020).Data was accessed in April 13, 2020 </p>
+
+                <blockquote>
+                  <p>All data are under Public Domain Dedication and License (PDDL).</p>
+                  <p>From Open Data Commons webpage on PDDL:</p>
+                  <p>You are free to:</p>
+                  <p>1.To Share: To copy, distribute and use the database.</p>
+                  <p>2.To Create: To produce works from the database.</p>
+                  <p>3.To Adapt: To modify, transform and build upon the database.
+                  <cite> <a href="https://support.datasf.org/help/what-license-are-open-data-sets-under">--Data SF license information</a></cite>
+                </blockquote>
+
+                <p>The data itself is divided into 29 columns and 41k rows. These are the columns I used: </p>
+                <div style="height:400px;overflow:auto;">
+                <div id="dataviztable_30069">
+                  <table class="table is-bordered pricing__table is-fullwidth">
+                   <col width=209 style='mso-width-source:userset;mso-width-alt:6698;width:157pt'>
+                   <col width=149 style='mso-width-source:userset;mso-width-alt:4778;width:112pt'>
+                   <col width=208 span=2 style='mso-width-source:userset;mso-width-alt:6656;
+                   width:156pt'>
+                   <tr height=21 style='height:16.0pt'>
+                    <td height=21 class=xl63 width=209 style='height:16.0pt;width:157pt'>Field
+                    Name</td>
+                    <td class=xl63 width=149 style='border-left:none;width:112pt'>Data Type</td>
+                    <td class=xl63 width=208 style='border-left:none;width:156pt'>Definition</td>
+                   </tr>
+                   <tr height=113 style='height:85.0pt' >
+                    <td height=113 class=xl64 style='height:85.0pt;border-top:none'>Non Payment</td>
+                    <td class=xl65 style='border-top:none;border-left:none'>Checkbox</td>
+                    <td class=xl66 width=208 style='border-top:none;border-left:none;width:156pt'>This field is checked (true) if the landlord indicated non-payment of rent as a grounds for eviction.</td>
+                   </tr>
+                   <tr height=68 style='height:51.0pt'>
+                    <td height=68 class=xl64 style='height:51.0pt;border-top:none'>Breach</td>
+                    <td class=xl65 style='border-top:none;border-left:none'>Checkbox</td>
+                    <td class=xl66 width=208 style='border-top:none;border-left:none;width:156pt'>This field is checked (true) if the landlord indicated breach of lease as a grounds for eviction.</td>
+                   </tr>
+                   <tr height=68 style='height:51.0pt'>
+                    <td height=68 class=xl64 style='height:51.0pt;border-top:none'>Nuisance
+                    Number</td>
+                    <td class=xl65 style='border-top:none;border-left:none'>Checkbox</td>
+                    <td class=xl66 width=208 style='border-top:none;border-left:none;width:156pt'>This field is checked (true) if the landlord indicated nuisance as a grounds for eviction.</td>
+                   </tr>
+                   <tr height=68 style='height:51.0pt' >
+                    <td height=68 class=xl64 style='height:51.0pt;border-top:none'>Illegal Use</td>
+                    <td class=xl65 style='border-top:none;border-left:none'>Checkbox</td>
+                    <td class=xl66 width=208 style='border-top:none;border-left:none;width:156pt'>	
+                      This field is checked (true) if the landlord indicated an illegal use of the rental unit as a grounds for eviction.</td>
+                   </tr>
+                   <tr height=45 style='height:34.0pt' >
+                    <td height=45 class=xl64 style='height:34.0pt;border-top:none'>Failure to Sign Renewal</td>
+                    <td class=xl65 style='border-top:none;border-left:none'>Checkbox</td>
+                    <td class=xl66 width=208 style='border-top:none;border-left:none;width:156pt'>This field is checked (true) if the landlord indicated failure to sign lease renewal as a grounds for eviction.</td>
+                   </tr>
+                   <tr height=91 style='height:68.0pt'>
+                    <td height=91 class=xl64 style='height:68.0pt;border-top:none'>Access Denial</td>
+                    <td class=xl64 style='border-top:none;border-left:none'>Checkbox</td>
+                    <td class=xl66 width=208 style='border-top:none;border-left:none;width:156pt'>	
+                      This field is checked (true) if the landlord indicated unlawful denial of access to unit as a grounds for eviction.</td>
+                   </tr>
+                   <tr height=68 style='height:51.0pt' >
+                    <td height=68 class=xl64 style='height:51.0pt;border-top:none'>Unapproved Subtenant</td>
+                    <td class=xl64 style='border-top:none;border-left:none'>Checkbox</td>
+                    <td class=xl66 width=208 style='border-top:none;border-left:none;width:156pt'>This field is checked (true) if the landlord indicated the tenant had an unapproved subtenant as a grounds for eviction.</td>
+                   </tr>
+                   <tr height=91 style='height:68.0pt'>
+                    <td height=91 class=xl64 style='height:68.0pt;border-top:none'>Owner Move In</td>
+                    <td class=xl64 style='border-top:none;border-left:none'>Checkbox</td>
+                    <td class=xl66 width=208 style='border-top:none;border-left:none;width:156pt'>This field is checked (true) if the landlord indicated an owner move in as a grounds for eviction.</td>
+                   </tr>
+                   <tr height=68 style='height:51.0pt'>
+                    <td height=68 class=xl64 style='height:51.0pt;border-top:none'>Demolition</td>
+                    <td class=xl64 style='border-top:none;border-left:none'>Checkbox</td>
+                    <td class=xl66 width=208 style='border-top:none;border-left:none;width:156pt'>This field is checked (true) if the landlord indicated demolition of property as a grounds for eviction.</td>
+                   </tr>
+                   <tr height=113 style='height:85.0pt'>
+                    <td height=113 class=xl64 style='height:85.0pt;border-top:none'>Capital Improvement</td>
+                    <td class=xl64 style='border-top:none;border-left:none'>Checkbox</td>
+                    <td class=xl66 width=208 style='border-top:none;border-left:none;width:156pt'>This field is checked (true) if the landlord indicated a capital improvement as a grounds for eviction.</td>
+                   </tr>
+                   <tr height=68 style='height:51.0pt' >
+                    <td height=68 class=xl64 style='height:51.0pt;border-top:none'>Substantial Rehab</td>
+                    <td class=xl64 style='border-top:none;border-left:none'>Checkbox</td>
+                    <td class=xl66 width=208 style='border-top:none;border-left:none;width:156pt'>This field is checked (true) if the landlord indicated substantial rehabilitation as a grounds for eviction.</td>
+                   </tr>
+                   <tr height=91 style='height:68.0pt'>
+                    <td height=91 class=xl64 style='height:68.0pt;border-top:none'>Ellis Act WithDrawal
+                    On Scene DtTm</td>
+                    <td class=xl64 style='border-top:none;border-left:none'>Checkbox</td>
+                    <td class=xl66 width=208 style='border-top:none;border-left:none;width:156pt'>	
+                      This field is checked (true) if the landlord indicated an Ellis Act withdrawal (going out of business) as a grounds for eviction.
+                    coordinates.</td>
+                   </tr>
+                   <tr height=91 style='height:68.0pt'>
+                    <td height=91 class=xl64 style='height:68.0pt;border-top:none'>Condo Conversion</td>
+                    <td class=xl64 style='border-top:none;border-left:none'>Checkbox</td>
+                    <td class=xl66 width=208 style='border-top:none;border-left:none;width:156pt'>This field is checked (true) if the landlord indicated a condo conversion as a grounds for eviction.</td>
+                   </tr>
+                   <tr height=68 style='height:51.0pt'>
+                    <td height=68 class=xl64 style='height:51.0pt;border-top:none'>Roommate Same Unit</td>
+                    <td class=xl64 style='border-top:none;border-left:none'>Checkbox</td>
+                    <td class=xl66 width=208 style='border-top:none;border-left:none;width:156pt'>	
+                      This field is checked (true) if the landlord indicated if they were evicting a roommate in their unit as a grounds for eviction.</td>
+                   </tr>
+                   <tr height=91 style='height:68.0pt'>
+                    <td height=91 class=xl64 style='height:68.0pt;border-top:none'>Other Cause
+                    Disposition</td>
+                    <td class=xl64 style='border-top:none;border-left:none'>Checkbox</td>
+                    <td class=xl66 width=208 style='border-top:none;border-left:none;width:156pt'>This field is checked (true) if some other cause not covered by the admin code was indicated by the landlord. These are not enforceable grounds, but are indicated here for record keeping.</td>
+                   </tr>
+                   <tr height=91 style='height:68.0pt'>
+                    <td height=91 class=xl64 style='height:68.0pt;border-top:none'>Late Payments</td>
+                    <td class=xl64 style='border-top:none;border-left:none'>Checkbox</td>
+                    <td class=xl66 width=208 style='border-top:none;border-left:none;width:156pt'>	
+                      This field is checked (true) if the landlord indicated habitual late payment of rent as a grounds for eviction.</td>
+                   </tr>
+                   <tr height=91 style='height:68.0pt'>
+                    <td height=91 class=xl64 style='height:68.0pt;border-top:none'>Lead Remediation</td>
+                    <td class=xl64 style='border-top:none;border-left:none'>Checkbox</td>
+                    <td class=xl67 width=208 style='border-top:none;border-left:none;width:156pt'>This field is checked (true) if the landlord indicated lead remediation as a grounds for eviction.</td>
+                   </tr>
+                   <tr height=23 style='height:17.0pt'>
+                    <td height=23 class=xl64 style='height:17.0pt;border-top:none'>Development</td>
+                    <td class=xl64 style='border-top:none;border-left:none'>Checkbox</td>
+                    <td class=xl67 width=208 style='border-top:none;border-left:none;width:156pt'>This field is checked (true) if the landlord indicated a development agreement as a grounds for eviction.</td>
+                   </tr>
+                   <tr height=23 style='height:17.0pt'>
+                    <td height=23 class=xl64 style='height:17.0pt;border-top:none'>Good Samaritan Ends</td>
+                    <td class=xl64 style='border-top:none;border-left:none'>Checkbox</td>
+                    <td class=xl67 width=208 style='border-top:none;border-left:none;width:156pt'>This field is checked (true) if the landlord indicated the period of good samaritan laws coming to an end as a grounds for eviction.</td>
+                   </tr>
+                   <tr height=68 style='height:51.0pt'>
+                    <td height=68 class=xl64 style='height:51.0pt;border-top:none'>Neighborhoods - Analysis Boundaries</td>
+                    <td class=xl64 style='border-top:none;border-left:none'>Text</td>
+                    <td class=xl67 width=208 style='border-top:none;border-left:none;width:156pt'>Analysis neighborhoods corresponding to census boundaries. You can see these boundaries here: <a href="https://data.sfgov.org/d/p5b7-5n3h"></a> Please note these are automatically assigned based on the latitude and longitude. These will be blank if the automated geocoding was unsuccessful.</td>
+                   </tr>
+                   <tr height=0 style='display:none'>
+                    <td width=209 style='width:157pt'></td>
+                    <td width=149 style='width:112pt'></td>
+                    <td width=208 style='width:156pt'></td>
+                   </tr>
+                  </table>
+                </div>
+                </div>
+
+                <h2 id="data">Processing/Filtering</h2>
+
+                <p>For the collected data, null values were filtered out of the visualizations.</p>
+
+                <h2>Data wrangling</h2>
+                <p>Since the focus was to see 2019 eviction notices, only the data of file dates from 1/1/2019 to 12/31/2019 were used </p>
+
+
+      </div>
+      <!-- End page content -->
+    </div>
+  </section>
+
+  <div id="footer"></div>
+
+  <!-- End mobile menu responsiveness -->
+  </body>
+
+</html>
