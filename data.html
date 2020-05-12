@@ -38,8 +38,10 @@
         <!-- <p>Include some detailed information about the dataset here. You should <a href="#">add a link</a> to the original dataset. You might also want to quote the license:</p> -->
 
         <h2 id="data">Data</h2>
+        <p>The datasets that I used was Data SF <a href="https://data.sfgov.org/Housing-and-Buildings/Eviction-Notices/5cei-gny5"> Eviction Notices </a> and  American Community Survey <a href="https://sfplanning.org/resource/san-francisco-neighborhoods-socio-economic-profiles-2012-2016"> San Francisco Neighborhoods Socio-Economic Profiles 2012-2016 </a>
+          <br></br>
 
-                <p>The data set was taken from Data SF and shows the <a href="https://data.sfgov.org/Housing-and-Buildings/Eviction-Notices/5cei-gny5"> Eviction Notices </a> filed with the San Francisco Rent Board per San Francisco Administrative Code 37.9(c).
+                <p> Data SF dataset shows the <a href="https://data.sfgov.org/Housing-and-Buildings/Eviction-Notices/5cei-gny5"></a> Eviction Notices </a> filed with the San Francisco Rent Board per San Francisco Administrative Code 37.9(c).
                 <p> Notices are published since January 1, 1997 and monthly updated (as of this date in April 2020).Data was accessed in April 13, 2020 </p>
 
                 <blockquote>
@@ -189,12 +191,74 @@
                 </div>
                 </div>
 
+                <br></br>
+
+                <p> American Community Survey dataset shows the <a href="https://data.sfgov.org/Housing-and-Buildings/Eviction-Notices/5cei-gny5"></a> 2016 Socio-Economic Profiles for the SF neighborhoods</a>.
+                <p> This report compiles census-tract-level 2014 Five Year American Community Survey census data for each neighborhood. It provides select demographic and housing characteristics as well as information on employment and the commute to work.</p>
+                <p> II will be using this dataset to assist datasf Eviction notice dataset; even though this data is from 2016 we can make some rough estimates or assumptions that the information are around same values to make comparison and instead of using the base values</p>
+                
+
+                  <blockquote>
+                    <p>Statistics in each neighborhood profiles come from two datasets produced by the U.S. Census Bureau:</p>
+                    <p>Disclaimer:</p>
+                    <p>Information presented on this website is collected, maintained, and provided for the convenience of the reader. While every effort is made to keep such information accurate and up-to-date, the City and County of San Francisco does not certify the authenticity of information that originates from third parties.</p>
+                    <cite> <a href="https://sfplanning.org/policies">--SFPlanning policies</a></cite>
+                    <p>Responses to all Census Bureau surveys and administrative records obtained by the Census Bureau are safe, secure and protected by law. Under Title 13, all census data can only be used to produce statistics.</p>
+                    <cite> <a href="https://www.census.gov/newsroom/press-releases/2019/state-data-sharing-agreements.html">--Census Bureau license response</a></cite>
+                  </blockquote>
+
+
+
+                  <p>The data itself had a list of different census data for each SF neighborhoods. These are the data I used: </p>
+                  <div style="height:400px;overflow:auto;">
+                  <div id="dataviztable_30069">
+                    <table class="table is-bordered pricing__table is-fullwidth">
+                     <col width=209 style='mso-width-source:userset;mso-width-alt:6698;width:157pt'>
+                     <col width=149 style='mso-width-source:userset;mso-width-alt:4778;width:112pt'>
+                     <col width=208 span=2 style='mso-width-source:userset;mso-width-alt:6656;
+                     width:156pt'>
+                     <tr height=21 style='height:16.0pt'>
+                      <td height=21 class=xl63 width=209 style='height:16.0pt;width:157pt'>Field
+                      Name</td>
+                      <td class=xl63 width=149 style='border-left:none;width:112pt'>Data Type</td>
+                      <td class=xl63 width=208 style='border-left:none;width:156pt'>Definition</td>
+                     </tr>
+                     <tr height=113 style='height:85.0pt' >
+                      <td height=113 class=xl64 style='height:85.0pt;border-top:none'>Population</td>
+                      <td class=xl65 style='border-top:none;border-left:none'>Number</td>
+                      <td class=xl66 width=208 style='border-top:none;border-left:none;width:156pt'>The number of people living in the specific neighborhoods.</td>
+                     </tr>
+                     <tr height=113 style='height:85.0pt' >
+                      <td height=113 class=xl64 style='height:85.0pt;border-top:none'>Number of living units</td>
+                      <td class=xl65 style='border-top:none;border-left:none'>Number</td>
+                      <td class=xl66 width=208 style='border-top:none;border-left:none;width:156pt'>The number of living units in the specific neighborhoods.</td>
+                     </tr>
+                     <tr height=68 style='height:51.0pt'>
+                      <td height=68 class=xl64 style='height:51.0pt;border-top:none'>Median Contract Rent</td>
+                      <td class=xl65 style='border-top:none;border-left:none'>Number</td>
+                      <td class=xl66 width=208 style='border-top:none;border-left:none;width:156pt'>The median monthly rent agreed to or contracted for, regardless of any furnishings, utilities, fees, meals, or services that may be included</td>
+                     </tr>
+                     <tr height=68 style='height:51.0pt'>
+                      <td height=68 class=xl64 style='height:51.0pt;border-top:none'>Median Home value
+                      Number</td>
+                      <td class=xl65 style='border-top:none;border-left:none'>Number</td>
+                      <td class=xl66 width=208 style='border-top:none;border-left:none;width:156pt'>The median value of the property.</td>
+                     </tr>
+                     <tr height=0 style='display:none'>
+                      <td width=209 style='width:157pt'></td>
+                      <td width=149 style='width:112pt'></td>
+                      <td width=208 style='width:156pt'></td>
+                     </tr>
+                    </table>
+                  </div>
+                  </div>
+
                 <h2 id="data">Processing/Filtering</h2>
 
                 <p>For the collected data, null values were filtered out of the visualizations.</p>
 
-                <h2>Data wrangling</h2>
-                <p>Since the focus was to see 2019 eviction notices, only the data of file dates from 1/1/2019 to 12/31/2019 were used.</p>
+                <h2>Data Wrangling</h2>
+                <p>Since the focus was to see 2019 eviction notices, only the data of file dates from 1/1/2019 to 12/31/2019 were used. Much of my wrangling was counting the number of types of eviction notices and creating a hierarchy between the type of eviction and neighborhoods. I wrangled also some data from 2016 Socio-Economic Profiles for the SF neighborhoods dataset to be used </p>
 
 
       </div>

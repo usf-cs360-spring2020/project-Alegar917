@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Feedback</title>
+
+    <!-- Load Bulma from CDN (consider saving it to repository instead) -->
+    <!-- https://bulma.io/ -->
+    <link rel="stylesheet" href="https://jenil.github.io/bulmaswatch/nuclear/bulmaswatch.min.css">
+
+    <!-- Load Font Awesome 5 (free) icons -->
+
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script>
+    $(function(){
+      $("#footer").load("footer.html");
+      $("#navigation").load("navbar.html");
+    });
+    </script>
+  </head>
+
+  <body>
+
+  <div id="navigation"></div>
+
+  <section class="section">
+    <div class="container">
+      <!-- Begin page content -->
+      <div class="content">
+
+        <h2 id="data">Feedback</h2>
+
+        <p> For my feedback, I received some tips about my context and encoding about my visualization. As much of the color from the Treemap made it hard to see what was being compared or what was categories again.
+            Even though the color was appealing some of the interpretation of the data was being lost because of it. Which affected the understanding and effectiveness of my visualization.
+            I even received some pointer from my instructor in the live synchronous feedback on how some interactivity could bring out visualization and some extra layer understanding. I also received guidance to use SAN FRANCISCO NEIGHBORHOODSSOCIO-ECONOMIC PROFILES dataset to bring more info and texture to visualization.
+        </p>
+
+        <p> Through this feedback, I was able to create a better tooltip to highlight the neighborhoods name and number of evictions and brush to highlight the path of the hierarchy and I also changed the color scheme to be based on hierarchy scheme of the city, eviction type, and neighborhoods for a better understanding and less of confusion on what's being compared. I also added a map visualization based on SAN FRANCISCO NEIGHBORHOODSSOCIO-ECONOMIC PROFILES dataset to expand my data and added cross interactivity between each other to bring out both the data and visualization to be used.
+            I was also able to get a better understanind of my data and have a clear question and goal that I want my visualization to answer.
+        </p>
+
+              
+      </div>
+      <!-- End page content -->
+    </div>
+  </section>
+
+  <div id="footer"></div>
+
+  <!-- End mobile menu responsiveness -->
+  </body>
+
+</html>

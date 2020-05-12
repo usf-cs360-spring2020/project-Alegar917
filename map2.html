@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style type="text/css">
+
+.has-image-centered {
+      /* margin-left: auto; */
+      /* margin-right: auto; */
+      bottom: -280px;
+      right: -1590px;
+      height: 300px;
+      width: 250px;
+}
+
+
+.tick text{
+  font-size: 9px;
+  fill: #666666;
+  font-weight: normal;
+}
+
+text {
+    color: white;
+    }
+
+    .selected {
+    stroke: red !important;
+
+    }
+
+    text#tooltip {
+    font-family: sans-serif;
+    font-size: 12px;
+    text-shadow: 1px 1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, -1px -1px 0 #fff;
+    font-weight: 900;
+    }
+
+    text#tooltip1 {
+    font-family: sans-serif;
+    font-size: 12px;
+    text-shadow: 1px 1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, -1px -1px 0 #fff;
+    font-weight: 900;
+    }
+
+    text#toplabel {
+    font-family: sans-serif;
+    font-size: 12px;
+    text-shadow: 1px 1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, -1px -1px 0 #fff;
+    font-weight: 900;
+    }
+
+    .node circle {
+      stroke: silver;
+      stroke-width: 1.5px;
+    }
+
+    .node {
+      font: 10px sans-serif;
+      stroke-width: 1px;
+    }
+
+    .link {
+      fill: none;
+      stroke: silver;
+      stroke-width: 1.5px;
+    }
+
+    .tooltip {
+    position: absolute;
+    width: auto;
+    height: auto;
+    padding: 8px;
+    background: #ddd;
+    pointer-events: none;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    font-family: sans-serif;
+    font-size: 10pt;
+    color: black;
+    }
+
+    .tooltip1 {
+    position: absolute;
+    width: auto;
+    height: auto;
+    padding: 8px;
+    background: #ddd;
+    pointer-events: none;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    font-family: sans-serif;
+    font-size: 10pt;
+    color: black;
+    }
+
+    .has-image-centered {
+      /* margin-left: auto; */
+      /* margin-right: auto; */
+      bottom: -280px;
+      right: -1590px;
+      height: 300px;
+      width: 250px;
+    }
+    
+    svg {
+      font: 10px sans-serif;
+    }
+
+    .test{
+        background-color: white;
+    }
+    
+    .background path {
+      fill: none;
+      stroke: #ddd;
+      shape-rendering: crispEdges;
+    }
+    
+    .foreground path {
+      fill: none;
+      stroke: steelblue;
+    }
+    
+    .brush .extent {
+      fill-opacity: .3;
+      stroke: #fff;
+      shape-rendering: crispEdges;
+    }
+    
+    .axis line,
+    .axis path {
+      fill: none;
+      stroke: #000;
+      shape-rendering: crispEdges;
+    }
+    .axis text {
+      text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
+      cursor: move;
+    }
+
+
+    /* body {
+    background-color: white;
+    text-align: center;
+  
+    font-family: sans-serif;
+    font-size: 9pt;
+  } */
+  
+  
+  path.land {
+    fill: #dddddd;
+    stroke: none;
+  }
+  
+  path.neighborhood {
+    fill: none;
+    stroke: white;
+    stroke-width: 3.5px;
+    pointer-events: none;
+  }
+  
+  path.street {
+    fill: none;
+    stroke: white;
+    stroke-width: 1px;
+    pointer-events: none;
+  }
+  
+  .active {
+    stroke: red !important;
+    stroke-width: 1.5px !important;
+  }
+  
+  .black{
+    fill-opacity: 0.6;
+    fill: black;
+    stroke: white;
+    stroke-width: 1px;
+  }
+
+  .gray {
+    fill-opacity: 0.6;
+    fill: gray;
+    stroke: white;
+    stroke-width: 1px;
+  }
+  
+  
+  a:link, a:visited {
+    color: #444444;
+  }
+  
+  a:hover, a:active {
+    color: red;
+  }
+  
+  th {
+    text-align: right;
+  }
+    
+.icon:before {
+    font-family: "Font Awesome 5 Free";
+}
+
+</style>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Final</title>
+
+    <!-- Load Bulma from CDN (consider saving it to repository instead) -->
+    <!-- https://bulma.io/ -->
+    <link rel="stylesheet" href="https://jenil.github.io/bulmaswatch/nuclear/bulmaswatch.min.css">
+
+    <!-- Load Font Awesome 5 (free) icons -->
+
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
+</head>
+
+  <body>
+
+  <div id="navigation">
+  </div>
+  <script>
+  $(function(){
+    $("#navigation").load("navbar.html");
+  });
+  </script>
+
+
+      <section class="section">
+        <div class="container has-text-centered">
+          <div class="content has-text-centered">
+              <br></br>
+            <h1>What types of eviction notices affect specific neighborhoods compared to other neighborhoods?</h1>
+
+            
+                <svg class = "test" id="tree"></svg>
+        
+            
+              <svg class = "test" width="960" height="600" id="vis">
+                <g id="basemap"></g>
+            
+                <!-- turn off pointer events for certain groups -->
+                <g id="streets" pointer-events="none"></g>
+                <g id="outline" pointer-events="none"></g>
+            
+                <g id="arrests"></g>
+                <g id="tooltip" pointer-events="none"></g>
+                <g id="details" pointer-events="none"></g>
+              </svg>
+            
+            </div>
+
+            <div class="content has-text-centered">
+            <h2>Encoding</h2>
+            <p> To interpret my visualization, I created two visualizations that are cross interactivity to each other; the Treemap and Conic Equal-Area Map. For color, The Treemap coloring scheme is based on the level of height that the node is located and 
+                for the Map, the coloring is based on the number of units that neighborhood has the lower shade blue means that it has a lower amount of units while the dark shade of blue means it has a lot of units.
+                The Map also has a neighborhood that are colored in a grey shade which that means that that neighborhood did not have any eviction notice to better see what areas had eviction notices. For sizing, each node in the treemap is based on
+                the number of eviction notice it has, while the map sizing based on the area of the neighborhood borders. 
+            </p>
+
+            <h2 class="content has-text-centered">Interactivity</h2>
+            <p> For interactivity, I add a tooltip for both visualizations; for the treemap, it has the name and the number of eviction notices display when hovered and when you select the type of eviction height it will display the explanation of that eviction type. For the map, it has information on population, number of units, median home value, 
+                median contract rent, the total number of eviction notice, and sub-category for each neighborhood when you hover the selected neighborhood. I also added a brushing in the treemap so it brushes/highlights the path of the node you hovered in. I also enabled cross interactivity for both visualizations so when you select the neighborhood in the treemap it will select also that neighborhood in the map and display the information and vice versa. By selecting something in the map,
+                it will highlight all the location of the neighborhood in the treemap. For the map, I also enabled zomming so you can zoom deeper inside the neighborhood for a better view. 
+            </p>
+
+            <h2 class="content has-text-centered">Findings</h2>
+            <p>
+                For the findings, I learn a couple of things about the type of evictions notice that exist in SF and I got some interesting results from visualization as in regards to eviction numbers and neighborhood. The first one that comes to my mind is the result of Lakeshore which had 316 eviction notices; 310 caused by Breach and 6 caused by Nuisance. which was interesting as the second-highest number of breaches was caused by Mission which only had 17 in total which is a huge margin of difference and by using the information from Socio-Economic Profiles for the SF neighborhoods, we could estimate that Lakeshore roughly has 3x less housing unit than in the Mission (in 2016 estimates) which bring into the topic on why is there such a gap or what causing Lakeshore to have some breaches in the year of 2019. This is one of many comparisons 
+                could be made by observing the visualization.
+            </p>
+
+
+        </div>
+
+            <!-- <h2>Interpretation</h2>
+            <p> In order to understand that stacked bar chart, one needs to look at the axis. The Y-axis represents the different neighborhoods in SF while the X-axis represents the number of alarms, at 20k intervals. If you hover over the specific bar, the mouse tooltip, one can see the type of call, categorized based on an alarm, fire, non-life threatening life-threatening and also the number of alarms for that call type, and the average response time for that call type in that area. Some of that information gets hidden based on the size of the bars, and the hover info helps to give more detail </p> -->
+
+            <!-- <h2 align="center">Analysis</h2>
+            <p>
+            It is interesting to note that certain areas that have tendencies to have higher crime rates, also have a lot more fire responders,
+            because the firefighters end up going with the paramedics or also, like the Tenderloin, there are a lot of medical emergencies in general. This shows a clear trend, where the number of alarms is mostly raised due to potentially life-threatening emergencies and that they are the majority of the alarms in all the cases, which was interesting for me since I would expect the fires to be the most common call for the fire department. It is clear that the South of Market and the
+            Tenderloin has the most responsive and the top 4 areas have a lot of alarms, however, the other areas have a lot fewer alarms in comparison, since it goes down pretty quickly once they leave those areas, since it is a lot more residential. Now if we look at the response time, it is the lowest for the life-threatening emergency, which makes sense, followed by the fire. However, it is interesting to note that the fire call takes 15s in the financial District to reach, while in the mission, it takes 8s for reaching a fire call.
+            </p> -->
+
+          <!-- <h2 align="center">Inspiration</h2>
+                <p>
+                  I had to use many different resources, based on my previous homework code, professor Sophies data-wrangling techniques in order to implement the bar. I have attributed all those sources below.
+                </p> -->
+                    <!-- <span class="heading">Acknowledgements</span> -->
+
+                    <!-- <p2>
+                      <a href="https://bl.ocks.org/Andrew-Reid/0aedd5f3fb8b099e3e10690bd38bd458">Horizontal Stacked Bar: Andrew Reid</a><br/>
+                      <a href="https://bl.ocks.org/mjfoster83/7c9bdfd714ab2f2e39dd5c09057a55a0">Bar Chart with Tooltip: Mike Foster</a><br/>
+                      <a href="https://www.d3-graph-gallery.com/graph/custom_legend.html">Legend and Axis Idea</a><br/>
+                      <a href="https://medium.com/@kj_schmidt/show-data-on-mouse-over-with-d3-js-3bf598ff8fc2">Tooltip Explanation</a><br/><br/>
+                    </p2> -->
+          </div>
+          </div>
+            </section>
+
+<script>
+d3.csv("evict.csv").then(create);
+
+let zoom = d3.zoom()
+  let generator = d3.linkVertical()
+    .x(d => d.x)
+    .y(d => d.y);
+
+function create(d){
+
+    let width = 960;
+    let height = 600;
+
+    let data = d3.nest()
+      .key(function(d) {
+        return d["city"];
+      })
+      .key(function(d) {
+        return d["id"]
+      })
+      .key(function(d) {
+        return d["neighborhood"]
+      })
+      .rollup(function(v) {
+        return v.length;
+      })
+      .entries(d);
+
+    console.log("hierarchy", data);
+
+
+    let hierarchy = d3.hierarchy(data[0], function(d) {
+      return d.values;
+    });
+
+
+  let pad1 = 110;
+
+  let svg1 = d3.select("body").select("svg#tree")
+      .style("width", width)
+      .style("height", height)
+      .attr('transform', 'translate(' + (width / 2 - 20) + ',' + (height / 2 ) + ')');
+
+    let plot1 = svg1.append("g")
+      .attr("id", "plot")
+      .attr("transform", translate(20, 20)); 
+
+  hierarchy.sort(function(a, b) {
+      return b.height - a.height || b.count - a.count;
+    });
+
+    
+
+    hierarchy.sum(d => d.value);
+
+    color = d3.scaleSequential([hierarchy.height, 0], d3.interpolateYlGnBu);
+    console.log(hierarchy)
+
+    let layout = d3.treemap().padding(5).size([width - 1 * pad1, height - 1 * pad1]);
+
+    layout(hierarchy);
+    
+    let i = 0;
+
+    hierarchy.each(function(node) {
+      node.id = i++;
+    });
+
+    let rects = plot1.selectAll("rect")
+    .data(hierarchy.descendants())
+    .enter()
+    .append("rect")
+    .attr("x", function(d) {  return d.x0; })
+    .attr("y", function(d) { return d.y0; })
+    .attr("width", function(d) { return d.x1 - d.x0; })
+    .attr("height", function(d) { return d.y1 - d.y0; })
+    .attr("id", function(d) { return d.data.key; })
+    .attr("class", "node")
+    .style("fill", function(d) {return color(d.depth)});
+
+
+
+
+
+
+function translate(x, y) {
+    return 'translate(' + String(x) + ',' + String(y) + ')';
+}
+
+
+
+
+  const urls = {
+  basemap: "https://data.sfgov.org/resource/6ia5-2f8k.geojson",
+  streets: "https://data.sfgov.org/resource/hn5x-7sr8.geojson?$limit=5000",
+  arrests: {}
+};
+
+
+const svg2 = d3.select("body").select("svg#vis");
+svg2.attr('transform', 'translate(' + (-width + 400) + ',' + (-height/2) + ')');
+
+const g = {
+  basemap: svg2.select("g#basemap"),
+  streets: svg2.select("g#streets"),
+  outline: svg2.select("g#outline"),
+  arrests: svg2.select("g#arrests"),
+  tooltip: svg2.select("g#tooltip"),
+  details: svg2.select("g#details")
+};
+
+// setup tooltip (shows neighborhood name)
+const tip = g.tooltip.append("text").attr("id", "tooltip");
+tip.attr("text-anchor", "end");
+tip.attr("dx", -5);
+tip.attr("dy", -5);
+tip.style("visibility", "hidden");
+
+// add details widget
+// https://bl.ocks.org/mbostock/1424037
+const details = g.details.append("foreignObject")
+
+  .attr("id", "details")
+  .attr("width", 300)
+  .attr("height", 600)
+  .attr("x", 0)
+  .attr("y", 0);
+
+const body = details.append("xhtml:body")
+  .style("text-align", "left")
+  .style("background", "none")
+  .style("color", "black")
+  .style("font-size", "10px")
+  .style("font-weight", "800")
+  .html("<p>N/A</p>");
+
+details.style("visibility", "hidden");
+
+// setup projection
+// https://github.com/d3/d3-geo#geoConicEqualArea
+const projection = d3.geoConicEqualArea();
+projection.parallels([37.692514, 37.840699]);
+projection.rotate([122, 0]);
+
+// setup path generator (note it is a GEO path, not a normal path)
+const path = d3.geoPath().projection(projection);
+
+
+function convertRow(row, index) {
+                      // this will be our converted output row
+                      let out = {};
+
+                      // this will be the values from each yyyy-mm column
+                      out.values = [];
+                      out.total = 1;
+                      // loop through all of the columns in our original row
+                      // depending on column name, perform some sort of conversion
+
+
+                      //console.log(row);
+
+                      for (let col in row) {
+                        switch (col) {
+                          // these are the text columns that do not need conversion
+                          case 'neighborhood':
+                            out[col] = row[col];
+                            break;
+                          
+
+                          case 'city':
+                            break;
+                           
+                          case 'month':
+                            break;
+
+                          case 'location':
+                            break;
+                      
+                          case 'population':
+                            out[col] = row[col];
+                            break;
+
+                          case 'number_of_units':
+                            out[col] = row[col];
+                            break;
+
+                          case 'median__contract_rent':
+                            out[col] = row[col];
+                            break; 
+
+                          case 'median_home_value':
+                            out[col] = row[col];
+                            break;   
+                          
+
+                          default:
+
+                          // // these should be our time series values
+                          var date = row[col];
+
+                          //   // // convert the value to float
+                          // var value = parseInt(row['Number of Alarms']);
+
+                          //   // // add them to our values
+                          out.values.push({
+                              'date': date,
+                              'value': 1
+                            });
+                            // out[col] = +row[col]
+                            break;
+                        }
+                      }
+                      // console.log(out);
+                      return out;
+                    }
+
+let output = [];
+
+d3.csv("evict.csv", convertRow).then(drawArrests);
+
+d3.json(urls.basemap).then(function(json) {
+  // makes sure to adjust projection to fit all of our regions
+  projection.fitSize([960, 600], json);
+
+  
+  drawBasemap(json);
+
+
+  
+  d3.json(urls.streets).then(drawStreets);
+});
+
+function drawBasemap(json) {
+    
+  console.log("basemap", json);
+
+  max = 0;
+  output.forEach(function(other) {
+        if(parseInt(other["number_of_units"]) > max){
+            max = parseInt(other["number_of_units"]);
+          }
+    });
+  
+
+  color = d3.scaleSequential([-10, max], d3.interpolateBlues);
+
+  const legendWidth = 100;
+  const legendHeight = 20;
+
+  // place legend in its own group
+  const group = svg2.append('g').attr('id', 'color-legend');
+
+  // shift legend to appropriate position
+  group.attr('transform', translate(920 - legendWidth , 200));
+
+  const title = group.append('text')
+    .attr('class', 'axis-title')
+    .text('Number of housing units');
+
+  title.attr('dy', 12);
+  title.attr('dx', -7);
+
+  const colorbox = group.append('rect')
+                        .attr('x', 0)
+                        .attr('y', 12 + 6)
+                        .attr('width', legendWidth)
+                        .attr('height', legendHeight);
+
+  const colorDomain = [d3.min(color.domain()), d3.max(color.domain())];
+
+  // add a new scale to go from color tick to percent
+  scale = d3.scaleLinear()
+    .range([0, 100])
+    .domain(colorDomain);
+
+  // we have to first add gradients
+  const defs = svg2.append('defs');
+
+
+  defs.append('linearGradient')
+    .attr('id', 'gradient')
+    .selectAll('stop')
+    .data(color.ticks())
+    .enter()
+    .append('stop')
+    .attr('offset', d => scale(d) + '%')
+    .attr('stop-color', d => color(d));
+
+  // draw the color rectangle with the gradient
+  colorbox.attr('fill', 'url(#gradient)');
+
+  // now we need to draw tick marks for our scale
+  // we can create a legend that will map our data domain to the legend colorbox
+    // legend = d3.scaleLinear()
+    // .domain(colorDomain)
+    // .range([0, legendWidth]);
+    
+
+    // const legendAxis = d3.axisBottom(legend)
+    //                     .tickValues(color.domain())
+    //                     .tickSize(legendHeight)
+    //                     .tickSizeOuter(0);
+                        
+
+    //                   const axisGroup = group.append('g')
+    //                     .attr('id', 'color-axis')
+    //                     .attr('transform', translate(-100, 12 + 6))
+    //                     .call(legendAxis);
+
+    //                   // now lets tighten up the tick labels a bit so they don't stick out
+    //                   axisGroup.selectAll('text')
+    //                     .each(function(d, i) {
+    //                       // set the first tick mark to anchor at the start
+    //                       if (i == 0) {
+    //                         d3.select(this)
+    //                           .attr('text-anchor', 'start')
+    //                       }
+    //                       // set the last tick mark to anchor at the end
+    //                       else if (i == legendAxis.tickValues().length - 1) {
+    //                         d3.select(this)
+    //                           .attr('text-anchor', 'end')
+    //                       }
+    //                     });
+
+
+  
+  const basemap = g.basemap.selectAll("path.land")
+    .data(json.features)
+    .enter()
+    .append("path")
+    .attr("d", path)
+    .attr("class", "land")
+    .style("fill", function(d) {
+
+      arr = output.filter(function(other) {
+          return other["neighborhood"] == d.properties.name;
+    });
+
+      if (arr.length == 0){
+        return "grey";
+      }
+      
+      return color(parseInt(arr[0]["number_of_units"]));
+      
+      });
+
+  const outline = g.outline.selectAll("path.neighborhood")
+      .data(json.features)
+      .enter()
+      .append("path")
+      .attr("d", path)
+      .attr("class", "neighborhood")
+      .each(function(d) {
+        d.properties.outline = this;
+      });
+
+  // add highlight
+  setup(plot1, basemap, rects, g,  false);
+
+}
+
+function drawStreets(json) {
+  // console.log("streets", json);
+
+  // only show active streets
+  const streets = json.features.filter(function(d) {
+    return d;
+  });
+
+  // console.log("removed", json.features.length - streets.length, "inactive streets");
+
+  g.streets.selectAll("path.street")
+    .data(streets)
+    .enter()
+    .append("path")
+    .attr("d", path)
+    .attr("class", "street");
+}
+
+function drawArrests(json) {
+  console.log("arrests", json);
+
+
+  json.forEach(function(item) {
+
+          var existing = output.filter(function(v, i) {
+            return v["neighborhood"] == item["neighborhood"];
+          });
+          
+          if (existing.length) {
+            var existingIndex = output.indexOf(existing[0]);
+
+
+            output[existingIndex].total++;
+            output[existingIndex].values = output[existingIndex].values.concat(item.values);
+       
+            var arr = [];
+
+            output[existingIndex].values.forEach(function(self) {
+
+              arr = output[existingIndex].values.filter(function(other) {
+	                  return other.date == self.date;
+              });
+              
+              self.value = arr.length;
+
+            });
+
+
+          } else {
+            if (typeof item.value == 'string')
+              item.value = [item.value];
+            output.push(item);
+          }
+       });
+
+            output.forEach(function(self) {
+
+              const filteredArr = self.values.reduce((acc, current) => {
+                const x = acc.find(item => item.date === current.date);
+                if (!x) {
+                  return acc.concat([current]);
+                } else {
+                  return acc;
+                }
+              }, []);
+
+
+              self.values = filteredArr;
+            });
+
+
+    output.forEach(function(self) {
+    if(self.neighborhood == "Lakeshore"){
+      self.total++;
+      self["values"][0].value++;
+    }
+    });
+
+}
+
+function setup(g, basemap, selection, f, raise){
+
+  
+
+
+
+  selection.on('mouseover.highlight', function(d) {
+    // https://github.com/d3/d3-hierarchy#node_path
+    // returns path from d3.select(this) node to selection.data()[0] root node
+
+  
+
+    let path = d3.select(this).datum().path(selection.data()[0]);
+
+    // console.log(path)
+
+    // select all of the nodes on the shortest path
+    let update = selection.data(path, node => node.id);
+
+
+    // highlight the selected nodes
+    update.classed('selected', true);
+
+    // update.call(d3.zoom().on("zoom", function () {
+    //    g.attr("transform", d3.event.transform)
+    // }))
+
+    // console.log(update);
+    
+    if (raise) {
+      update.raise();
+    }
+
+    selection.filter(function(item) {
+  return !path.includes(item);})
+        .transition()
+        .duration(500)
+        .attr("fill-opacity", "0.1")
+        .style("stroke", "")
+
+    if (d.height == 1){
+      showreason(g, d3.select(this));
+    }
+    
+  showmap(d);
+
+  });
+  
+  selection.on('mouseout.highlight', function(d) {
+    g.select("#tooltip1").remove();
+    let path = d3.select(this).datum().path(selection.data()[0]);
+    let update = selection.data(path, node => node.id);
+    update.classed('selected', false);
+
+    removemap(d);
+
+    selection
+      .transition()
+      .attr("fill-opacity", "1")
+      .style('stroke', 'black');
+  });
+  
+
+  function showTooltip(g, node) {
+    let gbox = g.node().getBBox(); // get bounding box of group BEFORE adding text
+    let nbox = node.node().getBBox(); // get bounding box of node
+
+    // calculate shift amount
+    let dx = nbox.width / 2;
+    let dy = nbox.height / 2;
+
+    // retrieve node attributes (calculate middle point)
+    let x = nbox.x + dx;
+    let y = nbox.y + dy;
+
+    // get data for node
+    let datum = node.datum();
+
+    // remove "java.base." from the node name
+    let name = datum.data.key;
+
+    // use node name and total size as tooltip text
+    numberFormat = d3.format(".2~s");
+    let text = `${name} (${numberFormat(datum.value)} eviction notices)`;
+
+    // create tooltip
+    let tooltip = g.append('text')
+      .text(text)
+      .attr('x', x)
+      .attr('y', y)
+      .attr('dy', -dy - 4) // shift upward above circle
+      .attr('text-anchor', 'middle') // anchor in the middle
+      .attr('id', 'tooltip');
+
+    // get bounding box for the text
+    let tbox = tooltip.node().getBBox();
+
+    // if text will fall off left side, anchor at start
+    if (tbox.x < gbox.x) {
+      tooltip.attr('text-anchor', 'start');
+      tooltip.attr('dx', -dx); // nudge text over from center
+    }
+    // if text will fall off right side, anchor at end
+    else if ((tbox.x + tbox.width) > (gbox.x + gbox.width)) {
+      tooltip.attr('text-anchor', 'end');
+      tooltip.attr('dx', dx);
+    }
+
+    // if text will fall off top side, place below circle instead
+    if (tbox.y < gbox.y) {
+      tooltip.attr('dy', dy + tbox.height);
+    }
+  }
+
+
+  function showreason(g, node) {
+    // let gbox = g.node().getBBox(); // get bounding box of group BEFORE adding text
+    // let nbox = node.node().getBBox(); // get bounding box of node
+
+    // retrieve node attributes (calculate middle point)
+    let x = width / 2;
+    // let y = height / 2 + 190;
+    let y = height / 2 + 250;
+
+    // get data for node
+    let datum = node.datum();
+
+    // remove "java.base." from the node name
+    let name = datum.data.key;
+
+    // use node name and total size as tooltip text
+    let text = "";
+
+    if (name == "late _payments ") {
+      text ="Reason: habitual late payment of rent, or frequent bounced checks";
+     }
+     else if (name == "owner _move_in ") {
+       text = "for use as their principal residence for a period of at least 36 continuous months.";
+     
+      g.append('text')
+      .text(text)
+      .attr('x', x)
+      .attr('y', y + 10)
+      .attr('text-anchor', 'middle') // anchor in the middle
+      .attr('id', 'tooltip1');
+
+      text = "Reason: A landlord may recover possession of a rental unit for the occupancy of the owner or a relative of the owner";
+     }
+
+     else if (name == "nuisance ") {
+      text ="Reason: Nuisance or substantial interference with the comfort, safety, or enjoyment of the landlord or other tenants in the building";
+     }
+
+     else if (name == "roommate_same_unit ") {
+      text ="Reason: An owner who resides in the same rental unit with his or her tenant may evict the tenant without just cause.";
+     }
+
+     else if (name == "capital _improvement ") {
+      text ="Reason: A landlord can temporarily remove the unit from housing use in order to carry out capital improvements or rehabilitation work.";
+     }
+
+     else if (name == "demolition ") {
+      text ="Reason: A landlord may demolish or to otherwise permanently remove the rental unit from housing use";
+     }
+
+     else if (name == "failure_to_sign_renewal ") {
+      text ="Reason: The tenant has refused to execute a written extension or renewal of an expired rental agreement for a further term.";
+     }
+
+     else if (name == "illegal_use ") {
+      text ="Reason: The tenant is using the property for an illegal purpose, the law allows a landlord to evict the offender.";
+     }
+
+     else if (name == "access_denial ") {
+      text ="Reason: The tenant has refused, after written notice to cease, to allow the landlord access to the rental unit as required by state or local law.";
+     }
+
+     else if (name == "ellis_act_withdrawal ") {
+      text ="Reason: The Ellis Act was enacted to require municipalities to allow property owners to go out of the residential rental housing business.";
+     }
+
+     else if (name == "non_pay ") {
+      text ="Reason: Non-payment of rent.";
+     }
+
+     else if (name == "breach ") {
+      text ="Reason: failure to cure a substantial breach of a rental agreement or lease; ex. breach of no Subletting Clause or breach of Occupancy Limits.";
+     }
+     else if (name == "good_samaritan _ends ") {
+      text = "after which the tenant may have to move out or pay higher rent, at the landlord’s option."
+      g.append('text')
+      .text(text)
+      .attr('x', x)
+      .attr('y', y + 10)
+      .attr('text-anchor', 'middle') // anchor in the middle
+      .attr('id', 'tooltip1');
+      text ="Reason: A Good Samaritan Tenancy is a temporary rental for a maximum period of 24 months,";
+     }
+     else if (name == "condo _conversion ") {
+      text ="Reason: The landlord can evict tenants if the landlord is sponsoring a condominium conversion.";
+     }
+     else if (name == "other_cause  ") {
+      text ="Reason: Other "+ ' "Just Causes" ' + "evictions notice.";
+     }
+
+    // let text = `${name} (${numberFormat(datum.value)} eviction notices)`;
+
+    // create tooltip
+    g.append('text')
+      .text(text)
+      .attr('x', x-15)
+      .attr('y', y)
+      // .attr('dy', -dy - 4) // shift upward above circle
+      .attr('text-anchor', 'middle') // anchor in the middle
+      .attr('id', 'tooltip1');
+  }
+
+  // show tooltip text on mouseover (hover)
+  selection.on('mouseover.tooltip', function(d) {
+    // console.log(d);
+    showTooltip(g, d3.select(this));
+  })
+
+  // remove tooltip text on mouseout
+  selection.on('mouseout.tooltip', function(d) {
+    g.select("#tooltip1").remove();
+    g.select("#tooltip").remove();
+  });
+
+
+  basemap.on("mouseover.highlight", function(d) {
+    d3.select(d.properties.outline).raise();
+    d3.select(d.properties.outline).classed("active", true);
+  })
+  .on("mouseout.highlight", function(d) {
+    d3.select(d.properties.outline).classed("active", false);
+  });
+
+
+  // rects.call(d3.zoom().on("zoom", function () {
+  //      g.attr("transform", d3.event.transform)
+  //   }))
+
+    var zoom = d3.zoom()
+  .scaleExtent([1, 8])
+        .on('zoom', function() {
+            svg2.selectAll('path')
+             .attr('transform', d3.event.transform)
+  });
+
+  svg2.call(zoom);
+
+  // add tooltip
+  basemap.on("mouseover.tooltip", function(d) {
+    tip.text(d.properties.name);
+    tip.style("visibility", "visible");
+
+    const coords = d3.mouse(f.basemap.node());
+    tip.attr("x", coords[0]);
+    tip.attr("y", coords[1]);
+
+    arr = output.filter(function(other) {
+          return other["neighborhood"] == d.properties.name;
+    });
+
+  
+
+    if (arr.length == 0){
+      arr.push({median__contract_rent: "N/A", median_home_value: "N/A",  number_of_units: "N/A", neighborhood: d.properties.name, number_of_units: "N/A", population: "N/A", total: 0, values:[]});
+    }
+    
+
+
+    function search (name) {
+      value = 0;
+      arr[0]["values"].forEach(function(d){
+
+          if (d.date == name){
+            value = d.value;
+          }
+      });
+      
+      return value;
+    }
+
+
+
+
+    const html = `
+      <table border="0" cellspacing="0" cellpadding="2">
+      <tbody>
+        <tr>
+          <th>Location:</th>
+          <td>${arr[0]["neighborhood"]}</td>
+        </tr>
+        <tr>
+          <th>EST. population:</th>
+          <td>${arr[0]["population"]}</td>
+        </tr>
+        <th>EST. number of units:</th>
+          <td>${arr[0]["number_of_units"]}</td>
+        </tr>
+        <tr>
+          <th>EST. median contract rent:</th>
+          <td>${"$" + arr[0]["median__contract_rent"]}</td>
+        </tr>
+        <tr>
+          <th>EST. median home value:</th>
+          <td>${"$" + arr[0]["median_home_value"]}</td>
+        </tr>
+        <tr>
+          <th>Total number of evictions:</th>
+          <td>${arr[0]["total"]}</td>
+        </tr>
+        <tr>
+          <th>Breach:</th>
+          <td>${search("breach ")}</td>
+      </tr>
+      <tr>
+          <th>Nuisance:</th>
+          <td>${search("nuisance ")}</td>
+      </tr>
+      <tr>
+          <th>Capital improvement:</th>
+          <td>${search("capital _improvement ")}</td>
+      </tr>
+      <tr>
+          <th>Late payment:</th>
+          <td>${search("late _payments ")}</td>
+      </tr>
+      <tr>
+          <th>Owner move in:</th>
+          <td>${search("owner _move_in ")}</td>
+      </tr>
+      <tr>
+          <th>Roomate same unit:</th>
+          <td>${search("roommate_same_unit ")}</td>
+      </tr>
+      <tr>
+          <th>Demolition:</th>
+          <td>${search("demolition ")}</td>
+      </tr>
+      <tr>
+          <th>Failure to sign renewal:</th>
+          <td>${search("failure_to_sign_renewal ")}</td>
+      </tr>
+      <tr>
+          <th>Illegal use:</th>
+          <td>${search("illegal_use ")}</td>
+      </tr>
+      <tr>
+          <th>Access denial:</th>
+          <td>${search("access_denial ")}</td>
+      </tr>
+      <tr>
+          <th>Ellis Act Withdrawal:</th>
+          <td>${search("ellis_act_withdrawal ")}</td>
+      </tr>
+      <tr>
+          <th>Non pay:</th>
+          <td>${search("non_pay ")}</td>
+      </tr>
+      <tr>
+          <th>Good Samaritan ends:</th>
+          <td>${search("good_samaritan _ends ")}</td>
+      </tr>
+      <tr>
+          <th>Condo Conversion:</th>
+          <td>${search("condo _conversion ")}</td>
+      </tr>
+      <tr>
+          <th>Other causes:</th>
+          <td>${search("other_cause  ")}</td>
+      </tr>
+      </tbody>
+      </table>
+    `;
+
+
+    body.html(html);
+    details.style("visibility", "visible");
+    
+  })
+
+  .on("mousemove.tooltip", function(d) {
+    const coords = d3.mouse(f.basemap.node());
+    tip.attr("x", coords[0]);
+    tip.attr("y", coords[1]);
+    showtree(d);
+  })
+  .on("mouseout.tooltip", function(d) {
+    tip.style("visibility", "hidden");
+    details.style("visibility", "hidden");
+    removetree(d);
+  });
+
+
+  function showmap(name){
+    basemap["_groups"][0].forEach(function(path) {
+      if (path["__data__"].properties.name == name.data.key){
+          path["__on"][0].value(path["__data__"]);
+          // path["__on"][3].value(path["__data__"]);
+          path["__on"][2].value(path["__data__"]);
+      } 
+    });
+  }
+
+  function removemap(name){
+    basemap["_groups"][0].forEach(function(path){
+      if (path["__data__"].properties.name == name.data.key){
+          path["__on"][1].value(path["__data__"]);
+          path["__on"][4].value(path["__data__"]);
+      } 
+    });
+  }
+
+
+  function showtree(name){
+    arr = selection["_groups"][0].filter(function(path) {
+        return path["__data__"].data.key == name.properties.name;
+    });
+
+    arr.forEach(function(location) {
+      location.attributes.class.value = "node selected";
+    });
+
+    if(arr.length > 0){
+        selection.filter(function(item) {
+    return !arr.includes(item) && item.height == 0;})
+            .transition()
+            .duration(500)
+            .attr("fill-opacity", "0.1")
+            .style("stroke", "");
+    }
+
+  }
+  
+  function removetree(name){
+    
+    arr = selection["_groups"][0].filter(function(path) {
+        return path["__data__"].data.key == name.properties.name;
+    });
+    
+    arr.forEach(function(location) {
+      location.attributes.class.value = "node";
+    });
+
+    selection
+      .transition()
+      .attr("fill-opacity", "1")
+      .style('stroke', 'black')
+
+
+  }
+
+
+
+  }
+
+     //legend
+  svg1.append("circle")
+  .attr("cx", width - 80)
+  .attr("cy", height - 210)
+  .attr("r", 5)
+  .style("fill",  color(2))
+  .style("stroke", "black")
+
+  svg1.append("circle")
+  .attr("cx", width - 80)
+  .attr("cy", height - 230)
+  .attr("r", 5)
+  .style("fill",  color(1))
+  .style("stroke", "black")
+  
+  svg1.append("circle")
+  .attr("cx", width - 80)
+  .attr("cy", height - 250)
+  .attr("r", 5)
+  .style("fill", color(0))
+  .style("stroke", "black")
+
+  //add text
+  svg1
+  .append("text")
+  .attr("class", "legend-text")
+  .attr("x", width - 70)
+  .attr("y", height - 210)
+  .text("Neighborhood")
+  .attr("alignment-baseline", "middle")
+  svg1
+  .append("text")
+  .attr("class", "legend-text")
+  .attr("x", width - 70)
+  .attr("y", height - 230)
+  .text("Eviction notice")
+  .attr("alignment-baseline", "middle")
+  svg1
+  .append("text")
+  .attr("class", "legend-text")
+  .attr("x", width - 70)
+  .attr("y", height - 250)
+  .text("City")
+  .attr("alignment-baseline", "middle")
+
+}
+
+
+
+</script>
+
+  <div id="footer">
+  </div>
+  <script>
+  $(function(){
+    $("#footer").load("footer.html");
+  });
+  </script>
+
+  </body>
+
+</html>
