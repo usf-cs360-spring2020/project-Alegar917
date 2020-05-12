@@ -246,7 +246,7 @@ text {
                 <svg class = "test" id="tree"></svg>
         
             
-              <svg class = "test" width="960" height="600" id="vis">
+              <svg class = "test" width="900" height="600" id="vis">
                 <g id="basemap"></g>
             
                 <!-- turn off pointer events for certain groups -->
@@ -409,7 +409,7 @@ function translate(x, y) {
 
 
 const svg2 = d3.select("body").select("svg#vis");
-svg2.attr('transform', 'translate(' + (-width + 450) + ',' + (-height/2 - 5) + ')');
+svg2.attr('transform', 'translate(' + (-width + 470) + ',' + (-height/2 - 5) + ')');
 
 const g = {
   basemap: svg2.select("g#basemap"),
